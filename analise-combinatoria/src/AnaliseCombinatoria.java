@@ -13,7 +13,7 @@ public class AnaliseCombinatoria {
 	 * @return o cálculo do arranjo
 	 */
 	public int arranjo() {
-		return permutacao() / (fatorial(getTotalElementos() - getElementosSelecionados()));
+		return auxiliarDivisao(getTotalElementos(), (getTotalElementos() - getElementosSelecionados()));
 	}
 	
 	/**
@@ -21,7 +21,21 @@ public class AnaliseCombinatoria {
 	 * @return o cálculo da combinação
 	 */
 	public int combinacao() {
-		return permutacao() / (fatorial(getElementosSelecionados()) * (fatorial(getTotalElementos() - getElementosSelecionados())));
+		return auxiliarDivisao(getTotalElementos(), getElementosSelecionados()) / (fatorial(getTotalElementos() - getElementosSelecionados()));
+	}
+	
+	/**
+	 * Função que realiza a divisão para o Arranjo, de forma matemática formal
+	 * @param numerador
+	 * @param denominador
+	 * @return
+	 */
+	public int auxiliarDivisao(int numerador, int denominador) {
+		int resultado = numerador;
+		for (int x = numerador - 1; x > denominador; x--) {
+			resultado = resultado * x;
+		}
+		return resultado;
 	}
 	
 	/**
